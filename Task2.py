@@ -41,7 +41,7 @@ def encrypt_decrypt_128(file_name):
         data[0] = data[0] + 1
         file_in.close()
 
-        if(datetime.now() - start).seconds > 1:
+        if(datetime.now() - start).seconds >= 1:
             break
 
         nonce = cipher.nonce
@@ -81,6 +81,9 @@ def encrypt_decrypt_256(file_name):
         ciphertext, tag = cipher.encrypt_and_digest(sentence.encode())
         data[0] = data[0] + 1
         file_in.close()
+
+        if(datetime.now() - start).seconds >= 1:
+            break
 
         nonce = cipher.nonce
         cipher = AES.new(key, AES.MODE_EAX, nonce)
