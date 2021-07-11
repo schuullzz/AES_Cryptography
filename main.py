@@ -28,7 +28,16 @@ while True:
         print("")
     elif answer == 2:
         Task2.encrypt_decrypt_128("Below128")
-        # Task2.encrypt_decrypt_256()
+        print("")
+        Task2.encrypt_decrypt_128("The Rime of the Ancient Mariner")
+        print("")
+        Task2.encrypt_decrypt_128("Greater1MB")
+        print("")
+        Task2.encrypt_decrypt_256("Below128")
+        print("")
+        Task2.encrypt_decrypt_256("The Rime of the Ancient Mariner")
+        print("")
+        Task2.encrypt_decrypt_256("Greater1MB")
         print("")
     elif answer == 3:
         break
