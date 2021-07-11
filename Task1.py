@@ -3,11 +3,15 @@
 # from the documentation for pycryptodome.
 # URL: https://www.pycryptodome.org/en/latest/src/examples.html#encrypt-data-with-aes
 
+# *************************************************************************************
+
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA256
 
+
+# *************************************************************************************
 
 def aes_example():
     print("AES Example:")
@@ -30,6 +34,8 @@ def aes_example():
 
     print("Plaintext: ",message)
 
+# *************************************************************************************
+
 
 def rsa_example():
     print("RSA Example:")
@@ -49,9 +55,13 @@ def rsa_example():
 
     print(key.publickey().export_key())
 
+# *************************************************************************************
+
 
 def sha_256_example():
     print("SHA-256 Example:")
     hash_1 = SHA256.new()
     hash_1.update(b'Greetings from Jupiter')
     print(hash_1.hexdigest())
+
+# *************************************************************************************

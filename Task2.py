@@ -4,8 +4,12 @@
 # random number generator.  Determine how many times you can encrypt and decrypt a particular file in a second. Make
 # a calculation to determine what size of file you could decrypt in one second with various settings.
 
+# *************************************************************************************
+
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
+
+# *************************************************************************************
 
 
 def encrypt_decrypt_128(file_name):
@@ -42,6 +46,8 @@ def encrypt_decrypt_128(file_name):
 
     print("Plaintext: ", plaintext)
 
+# *************************************************************************************
+
 
 def encrypt_decrypt_256(file_name):
     print("Encryption and Decryption with 256-bit Key:")
@@ -76,3 +82,5 @@ def encrypt_decrypt_256(file_name):
     plaintext = cipher.decrypt_and_verify(ciphertext, tag).decode()
 
     print("Plaintext: ", plaintext)
+
+# *************************************************************************************
