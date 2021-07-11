@@ -5,7 +5,6 @@
 
 # *************************************************************************************
 
-import time
 import Task1
 import Task2
 
@@ -30,17 +29,35 @@ while True:
         Task1.sha_256_example()
         print("")
     elif answer == 2:
-        Task2.encrypt_decrypt_128("Below128")
+        data = Task2.encrypt_decrypt_128("Below128")
+        print("Data Collected:")
+        print("Number of Encryption: ", data[0])
+        print("Number of Decryption: ", data[1])
         print("")
-        Task2.encrypt_decrypt_128("The Rime of the Ancient Mariner")
+        data = Task2.encrypt_decrypt_128("The Rime of the Ancient Mariner")
+        print("Data Collected:")
+        print("Number of Encryption: ", data[0])
+        print("Number of Decryption: ", data[1])
         print("")
-        Task2.encrypt_decrypt_128("Greater1MB")
+        data = Task2.encrypt_decrypt_128("Greater1MB")
+        print("Data Collected:")
+        print("Number of Encryption: ", data[0])
+        print("Number of Decryption: ", data[1])
         print("")
-        Task2.encrypt_decrypt_256("Below128")
+        data = Task2.encrypt_decrypt_256("Below128")
+        print("Data Collected:")
+        print("Number of Encryption: ", data[0])
+        print("Number of Decryption: ", data[1])
         print("")
-        Task2.encrypt_decrypt_256("The Rime of the Ancient Mariner")
+        data = Task2.encrypt_decrypt_256("The Rime of the Ancient Mariner")
+        print("Data Collected:")
+        print("Number of Encryption: ", data[0])
+        print("Number of Decryption: ", data[1])
         print("")
-        Task2.encrypt_decrypt_256("Greater1MB")
+        data = Task2.encrypt_decrypt_256("Greater1MB")
+        print("Data Collected:")
+        print("Number of Encryption: ", data[0])
+        print("Number of Decryption: ", data[1])
         print("")
     elif answer == 3:
         break
