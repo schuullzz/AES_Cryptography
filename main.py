@@ -27,8 +27,8 @@ while True:
         Task1.sha_256_example()
         print("")
     elif answer == 2:
-        Task2.encrypt_decrypt_128()
-        Task2.encrypt_decrypt_256()
+        Task2.encrypt_decrypt_128("Below128")
+        # Task2.encrypt_decrypt_256()
         print("")
     elif answer == 3:
         break
