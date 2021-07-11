@@ -13,74 +13,61 @@ from Crypto.Random import get_random_bytes
 
 
 def encrypt_decrypt_128(file_name):
-    print("Encryption and Decryption with 128-bit Key:")
+    print("Encryption and Decryption with 128-bit Key")
     key = get_random_bytes(16)
     cipher = AES.new(key, AES.MODE_EAX)
 
-    print("Key: ", key)
-
     new_file = file_name + ".txt"
+    print("File: ", new_file)
     file_in = open(new_file, 'r')
-    encrypt_file = file_name + "_encrypted128.txt"
-    file_out = open(encrypt_file, "wb")
+    sentence = ""
 
     while True:
 
-        sentence = file_in.readline()
+        current_sentence = file_in.readline()
+        sentence += current_sentence
 
-        if not sentence:
+        if not current_sentence:
             break
         else:
-            ciphertext, tag = cipher.encrypt_and_digest(sentence.encode())
-            [file_out.write(x) for x in (cipher.nonce, tag, ciphertext)]
-            print("Ciphertext: ", ciphertext)
+            sentence += current_sentence
 
+    ciphertext, tag = cipher.encrypt_and_digest(sentence.encode())
     file_in.close()
-    file_out.close()
 
-    file_in = open(encrypt_file, "rb")
-    nonce, tag, ciphertext = [file_in.read(x) for x in (16, 16, -1)]
-
+    nonce = cipher.nonce
     cipher = AES.new(key, AES.MODE_EAX, nonce)
     plaintext = cipher.decrypt_and_verify(ciphertext, tag).decode()
 
-    print("Plaintext: ", plaintext)
 
 # *************************************************************************************
 
 
 def encrypt_decrypt_256(file_name):
-    print("Encryption and Decryption with 256-bit Key:")
+    print("Encryption and Decryption with 256-bit Key")
     key = get_random_bytes(16)
     cipher = AES.new(key, AES.MODE_EAX)
 
-    print("Key: ", key)
-
     new_file = file_name + ".txt"
+    print("File: ", new_file)
     file_in = open(new_file, 'r')
-    encrypt_file = file_name + "_encrypted256.txt"
-    file_out = open(encrypt_file, "wb")
+    sentence = ""
 
     while True:
 
-        sentence = file_in.readline()
+        current_sentence = file_in.readline()
+        sentence += current_sentence
 
-        if not sentence:
+        if not current_sentence:
             break
         else:
-            ciphertext, tag = cipher.encrypt_and_digest(sentence.encode())
-            [file_out.write(x) for x in (cipher.nonce, tag, ciphertext)]
-            print("Ciphertext: ", ciphertext)
+            sentence += current_sentence
 
+    ciphertext, tag = cipher.encrypt_and_digest(sentence.encode())
     file_in.close()
-    file_out.close()
 
-    file_in = open(encrypt_file, "rb")
-    nonce, tag, ciphertext = [file_in.read(x) for x in (16, 16, -1)]
-
+    nonce = cipher.nonce
     cipher = AES.new(key, AES.MODE_EAX, nonce)
     plaintext = cipher.decrypt_and_verify(ciphertext, tag).decode()
-
-    print("Plaintext: ", plaintext)
 
 # *************************************************************************************
