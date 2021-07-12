@@ -17,7 +17,7 @@ def encrypt_decrypt_128(file_name):
     print("Encryption and Decryption with 128-bit Key")
     new_file = file_name + ".txt"
     print("File: ", new_file)
-    data = [0, 0]
+    data = [0, 0, 0]
     start = datetime.now()
 
     while(datetime.now() - start).seconds < 1:
@@ -41,13 +41,21 @@ def encrypt_decrypt_128(file_name):
         data[0] = data[0] + 1
         file_in.close()
 
-        if(datetime.now() - start).seconds >= 1:
+        if (datetime.now() - start).seconds >= 1:
             break
 
         nonce = cipher.nonce
         cipher = AES.new(key, AES.MODE_EAX, nonce)
-        plaintext = cipher.decrypt_and_verify(ciphertext, tag).decode()
+        cipher.decrypt_and_verify(ciphertext, tag).decode()
         data[1] = data[1] + 1
+
+    start = datetime.now()
+
+    while(datetime.now() - start).seconds < 1:
+        nonce = cipher.nonce
+        cipher = AES.new(key, AES.MODE_EAX, nonce)
+        cipher.decrypt_and_verify(ciphertext, tag).decode()
+        data[2] = data[2] + 1
 
     return data
 
@@ -58,11 +66,11 @@ def encrypt_decrypt_256(file_name):
     print("Encryption and Decryption with 256-bit Key")
     new_file = file_name + ".txt"
     print("File: ", new_file)
-    data = [0, 0]
+    data = [0, 0, 0]
     start = datetime.now()
 
     while(datetime.now() - start).seconds < 1:
-        key = get_random_bytes(16)
+        key = get_random_bytes(32)
         cipher = AES.new(key, AES.MODE_EAX)
 
         file_in = open(new_file, 'r')
@@ -82,13 +90,21 @@ def encrypt_decrypt_256(file_name):
         data[0] = data[0] + 1
         file_in.close()
 
-        if(datetime.now() - start).seconds >= 1:
+        if (datetime.now() - start).seconds >= 1:
             break
 
         nonce = cipher.nonce
         cipher = AES.new(key, AES.MODE_EAX, nonce)
-        plaintext = cipher.decrypt_and_verify(ciphertext, tag).decode()
+        cipher.decrypt_and_verify(ciphertext, tag).decode()
         data[1] = data[1] + 1
+
+    start = datetime.now()
+
+    while(datetime.now() - start).seconds < 1:
+        nonce = cipher.nonce
+        cipher = AES.new(key, AES.MODE_EAX, nonce)
+        cipher.decrypt_and_verify(ciphertext, tag).decode()
+        data[2] = data[2] + 1
 
     return data
 
