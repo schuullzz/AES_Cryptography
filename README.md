@@ -1,5 +1,5 @@
 # AES_Cryptography
-## main.py Task1.py Task2.py Below128.txt The Rime of the Ancient Mariner.txt Greater1MB.txt
+## main.py, Task1.py, Task2.py, Below128.txt, The Rime of the Ancient Mariner.txt, Greater1MB.txt
 
 ## Description
 ```
