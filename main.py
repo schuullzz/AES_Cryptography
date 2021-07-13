@@ -12,6 +12,8 @@ import Task2
 
 print("Project 2: Cryptography\n")
 
+# While statement that acts like a switch statement to display menu.
+# Prompts user for choice.
 while True:
     print("Select an option:")
     print("1. Task 1")

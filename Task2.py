@@ -13,20 +13,33 @@ from Crypto.Random import get_random_bytes
 # *************************************************************************************
 
 
+# Function that encrypts text from a file and creates a ciphertext.
+# The ciphertext is then decrypted to plaintext.
+# Counts the number of encrypts and decrypts in 1 second.
+# Counts the number of decrypts in 1 second.
 def encrypt_decrypt_128(file_name):
     print("Encryption and Decryption with 128-bit Key")
     new_file = file_name + ".txt"
     print("File: ", new_file)
+
+    # list that contains in index 0 and 1 the number of encrypts
+    # and decrypts in 1 second. The last index just has number of
+    # decrypts in 1 second.
     data = [0, 0, 0]
+    # Contains the original start time.
     start = datetime.now()
 
+    # while statement that only breaks after one second has passed.
     while(datetime.now() - start).seconds < 1:
         key = get_random_bytes(16)
         cipher = AES.new(key, AES.MODE_EAX)
 
+        # Opens file to read from.
         file_in = open(new_file, 'r')
         sentence = ""
 
+        # while statement that reads from a file until no more
+        # lines are found.
         while True:
 
             current_sentence = file_in.readline()
@@ -37,45 +50,69 @@ def encrypt_decrypt_128(file_name):
             else:
                 sentence += current_sentence
 
+        # encryption of plaintext.
         ciphertext, tag = cipher.encrypt_and_digest(sentence.encode())
+        # increments encryption.
         data[0] = data[0] + 1
+        # closes file
         file_in.close()
 
+        # breaks while loop if 1 second has been reached.
         if (datetime.now() - start).seconds >= 1:
             break
 
+        # decrypts the ciphertext.
         nonce = cipher.nonce
         cipher = AES.new(key, AES.MODE_EAX, nonce)
         cipher.decrypt_and_verify(ciphertext, tag).decode()
+        # increments decryption
         data[1] = data[1] + 1
 
+    # resets start time for decryption
     start = datetime.now()
 
+    # while loop that breaks when 1 second has passed
     while(datetime.now() - start).seconds < 1:
+        # decrypts cipher text with a key.
         nonce = cipher.nonce
         cipher = AES.new(key, AES.MODE_EAX, nonce)
         cipher.decrypt_and_verify(ciphertext, tag).decode()
+        # increments number of decryption.
         data[2] = data[2] + 1
 
+    # returns list of increments
     return data
 
 # *************************************************************************************
 
 
+# Function that encrypts text from a file and creates a ciphertext.
+# The ciphertext is then decrypted to plaintext.
+# Counts the number of encrypts and decrypts in 1 second.
+# Counts the number of decrypts in 1 second.
 def encrypt_decrypt_256(file_name):
     print("Encryption and Decryption with 256-bit Key")
     new_file = file_name + ".txt"
     print("File: ", new_file)
+
+    # list that contains in index 0 and 1 the number of encrypts
+    # and decrypts in 1 second. The last index just has number of
+    # decrypts in 1 second.
     data = [0, 0, 0]
+    # Contains the original start time.
     start = datetime.now()
 
+    # while statement that only breaks after one second has passed.
     while(datetime.now() - start).seconds < 1:
         key = get_random_bytes(32)
         cipher = AES.new(key, AES.MODE_EAX)
 
+        # Opens file to read from.
         file_in = open(new_file, 'r')
         sentence = ""
 
+        # while statement that reads from a file until no more
+        # lines are found.
         while True:
 
             current_sentence = file_in.readline()
@@ -86,26 +123,38 @@ def encrypt_decrypt_256(file_name):
             else:
                 sentence += current_sentence
 
+        # encryption of plaintext.
         ciphertext, tag = cipher.encrypt_and_digest(sentence.encode())
+        # increments encryption.
         data[0] = data[0] + 1
+        # closes file
         file_in.close()
 
+        # breaks while loop if 1 second has been reached.
         if (datetime.now() - start).seconds >= 1:
             break
 
+        # decrypts the ciphertext.
         nonce = cipher.nonce
         cipher = AES.new(key, AES.MODE_EAX, nonce)
+        # increments decryption
         cipher.decrypt_and_verify(ciphertext, tag).decode()
+        # increments decryption
         data[1] = data[1] + 1
 
+    # resets start time for decryption
     start = datetime.now()
 
+    # while loop that breaks when 1 second has passed
     while(datetime.now() - start).seconds < 1:
+        # decrypts cipher text with a key.
         nonce = cipher.nonce
         cipher = AES.new(key, AES.MODE_EAX, nonce)
         cipher.decrypt_and_verify(ciphertext, tag).decode()
+        # increments number of decryption.
         data[2] = data[2] + 1
 
+    # returns list of increments
     return data
 
 # *************************************************************************************
